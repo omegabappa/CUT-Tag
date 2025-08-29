@@ -1,2 +1,2 @@
 # CUT-Tag
-CUT and Tag scripts tailored for sakura nd chromatin
+CUT and Tag scripts tailored for sakura and chromatin to be used in lab.
