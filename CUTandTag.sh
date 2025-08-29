@@ -36,6 +36,21 @@ done
 
 
 ##CUTADAPT
+mkdir -p cutadapt
+for fq1 in trim_and_filter/*.1.trim_1_151.minQS_20.fastq; do
+  # sample = filename before first dot
+  sample=$(basename "$fq1" | cut -d. -f1)
+  # corresponding R2 file
+  fq2="trim_and_filter/${sample}.2.trim_1_151.minQS_20.fastq"
+
+
+  # run paired‐end cutadapt
+  cutadapt \
+    -a CTGTCTCTTATACACATCT -O 5 -q 0 \
+    -o cutadapt/"${sample}"_R1_cutadapt.fastq \
+    -p cutadapt/"${sample}"_R2_cutadapt.fastq \
+    "$fq1" "$fq2"
+done
 
 # 1. Make a directory to hold the fixed reads & reports
 mkdir -p fixed
@@ -126,5 +141,6 @@ Path: /var/ftp/Takaku/
 
 UCSC Genome Browser
 track type=bigWig name="bigwitg Gianna 3" db=mm10 visibility=full alwaysZero=on maxHeightPixels=40 color=0,0,153 bigDataUrl=ftp://***.***.***.***/Takaku/file_name.bigWig
+
 
 
